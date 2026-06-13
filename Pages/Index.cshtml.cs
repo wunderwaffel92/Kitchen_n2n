@@ -5,16 +5,20 @@ namespace Kitchen.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ApplicationDbContext _db;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public int UsersCount { get; set; }
+        public int OrdersCount { get; set; }
+
+        public IndexModel(ApplicationDbContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
         public void OnGet()
         {
-
+            UsersCount = _db.Users.Count();
+            OrdersCount = _db.Orders.Count();
         }
     }
 }

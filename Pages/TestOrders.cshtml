@@ -1,0 +1,103 @@
+﻿@page
+@model TestOrderModel
+
+<h2>Создание заявки</h2>
+
+<form method="post">
+
+    <div>
+        <label>Имя / комментарий</label>
+        <input asp-for="ClientName" />
+    </div>
+
+    <br>
+
+    <div>
+        <label>Ширина кухни</label>
+        <input asp-for="KitchenWidth" />
+    </div>
+
+    <br>
+
+    <div>
+        <label>Высота кухни</label>
+        <input asp-for="KitchenHeight" />
+    </div>
+
+    <br>
+
+    <div>
+        <label>Глубина кухни</label>
+        <input asp-for="KitchenDepth" />
+    </div>
+
+    <br>
+
+    <div>
+        <label>Материал корпуса</label>
+        <input asp-for="BodyMaterial" />
+    </div>
+
+    <br>
+
+    <div>
+        <label>Материал фасада</label>
+        <input asp-for="FacadeMaterial" />
+    </div>
+
+    <br>
+
+    <div>
+        <label>Цвет</label>
+        <input asp-for="Color" />
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Сохранить
+    </button>
+
+</form>
+
+<hr />
+
+<h3>Список заказов</h3>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Комментарий</th>
+        <th>Ширина</th>
+        <th>Высота</th>
+        <th>Глубина</th>
+        <th>Цвет</th>
+        <th>Действие</th>
+    </tr>
+
+    @foreach (var item in Model.Orders)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Comment</td>
+            <td>@item.KitchenWidth</td>
+            <td>@item.KitchenHeight</td>
+            <td>@item.KitchenDepth</td>
+            <td>@item.Color</td>
+            <td>
+                <form method="post" asp-page-handler="Delete">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <button type="submit">
+                        ❌ Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (Model.Message != null)
+{
+    <h3>@Model.Message</h3>
+}

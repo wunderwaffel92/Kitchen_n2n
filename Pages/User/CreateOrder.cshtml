@@ -1,0 +1,25 @@
+﻿@page
+@model CreateOrderModel
+
+<form method="post">
+
+    <label>Ширина кухни</label>
+    <input asp-for="Order.KitchenWidth" />
+
+    <label>Высота кухни</label>
+    <input asp-for="Order.KitchenHeight" />
+
+    <label>Глубина кухни</label>
+    <input asp-for="Order.KitchenDepth" />
+
+    <label>Материал фасада</label>
+    <input asp-for="Order.FacadeMaterial" />
+
+    <label>Цвет</label>
+    <input asp-for="Order.Color" />
+
+    <button type="submit">
+        Отправить
+    </button>
+
+</form>
